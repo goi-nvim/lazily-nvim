@@ -12,6 +12,14 @@ local function load(package)
 		end
 	end
 
+    if spec.config ~= nil then
+        if type(spec.config) == "string" then
+            require(spec.config)
+        elseif type(spec.config) == "function" then
+            spec.config()
+        end
+    end
+
 	lazily.opts.load(package)
 end
 
